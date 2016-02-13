@@ -6,79 +6,49 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None") [
-                @if (Model.PhoneNumber != null)
-                {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
-                }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber")
-                }
-                ]
-            </dd>
-        *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
+<hr/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img class="img-responsive img-rounded img-center" alt="" src="~/Images/NoImage.gif"/>
+        </div>
+        <div class="col-md-8">
             <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
+                <h3>Name</h3>
             </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+            <p>
+                <h4>Email</h4>
+            </p>
+            <p>
+                <h4>Phone</h4>
+            </p>
+        </div>
+    </div>
+    <div class="row spacer-lg">
+        <div class="col-md-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#Personal" aria-controls="Personal" role="tab" data-toggle="tab">Personal Details</a></li>
+                <li role="presentation"><a href="#Interests" aria-controls="Interests" role="tab" data-toggle="tab">Interests</a></li>
+                <li role="presentation"><a href="#Budget" aria-controls="Budget" role="tab" data-toggle="tab">Budget Sheet</a></li>
+                <li role="presentation"><a href="#Risk" aria-controls="Risk" role="tab" data-toggle="tab">Risk Profiling</a></li>
+                <li role="presentation"><a href="#Message" aria-controls="Message" role="tab" data-toggle="tab">Message Board</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="Personal">
+                    Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Interests">
+                    Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Budget">
+                    Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Risk">...</div>
+                <div role="tabpanel" class="tab-pane" id="Message">...</div>
+            </div>
+        </div>
+    </div>
 </div>

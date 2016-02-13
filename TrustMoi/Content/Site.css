@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.spacer-sm { margin-top:10px; }
+.spacer-md { margin-top:20px; }
+.spacer-lg { margin-top:30px; }
+
+.img-center {
+    margin: 0 auto;
+}
