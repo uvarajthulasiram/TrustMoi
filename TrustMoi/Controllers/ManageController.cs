@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrustMoi.Models;
+using TrustMoi.ViewModels;
 
 namespace TrustMoi.Controllers
 {
@@ -70,7 +71,8 @@ namespace TrustMoi.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                AdvisorPersonalDetails = new AdvisorPersonalDetailsVm()
             };
             return View(model);
         }

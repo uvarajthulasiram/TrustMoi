@@ -1,4 +1,6 @@
-﻿@model TrustMoi.Models.IndexViewModel
+﻿
+@model TrustMoi.Models.IndexViewModel
+
 @{
     ViewBag.Title = "Manage";
 }
@@ -38,7 +40,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="Personal">
-                    Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
+                    @Html.Partial("_PersonalDetails", Model.AdvisorPersonalDetails)
                 </div>
                 <div role="tabpanel" class="tab-pane" id="Interests">
                     Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
