@@ -14,7 +14,5 @@ namespace TrustMoi.Data
         {
             return base.SaveChanges();
         }
-
-        public new Database Database { get; set; }
     }
 }

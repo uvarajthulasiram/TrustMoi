@@ -1,4 +1,5 @@
-﻿using TrustMoi.Data;
+﻿using System.Linq;
+using TrustMoi.Data;
 using TrustMoi.Services.Base;
 using TrustMoi.Services.Interfaces;
 using TrustMoi.ViewModels;
@@ -7,26 +8,30 @@ namespace TrustMoi.Services.Mappers
 {
     public class PersonDetailMapper : MapperBase, IPersonDetailMapper
     {
-        public AdvisorPersonalDetailsVm Map(Person source)
+        public AdvisorPersonalDetailsVm Map(AspNetUser source)
         {
-            var aspNetUser = source.AspNetUser;
-
-            return new AdvisorPersonalDetailsVm
+            var person = source.People.SingleOrDefault();
+            var vm = new AdvisorPersonalDetailsVm
             {
-                FirstName = source.FirstName,
-                LastName = source.LastName,
-                Gender = source.Gender,
-                DateOfBirth = source.DateOfBirth,
-                AddressLine1 = source.AddressLine1,
-                AddressLine2 = source.AddressLine2,
-                City = source.City,
-                Phone = aspNetUser == null ? string.Empty : aspNetUser.PhoneNumber,
-                Email = aspNetUser == null ? string.Empty : aspNetUser.Email
+                Phone = source.PhoneNumber,
+                Email = source.Email
             };
+
+            if (person == null) return vm;
+
+            vm.FirstName = person.FirstName;
+            vm.LastName = person.LastName;
+            vm.Gender = person.Gender;
+            vm.DateOfBirth = person.DateOfBirth;
+            vm.AddressLine1 = person.AddressLine1;
+            vm.AddressLine2 = person.AddressLine2;
+            vm.City = person.City;
+
+            return vm;
         }
     }
 
-    public interface IPersonDetailMapper : IMapper<Person, AdvisorPersonalDetailsVm>
+    public interface IPersonDetailMapper : IMapper<AspNetUser, AdvisorPersonalDetailsVm>
     {
     }
 }

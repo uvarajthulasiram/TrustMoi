@@ -11,5 +11,6 @@
 	[City] VARCHAR(100) NOT NULL
 
 	CONSTRAINT [PK_Person] PRIMARY KEY CLUSTERED ([Id]),
-	CONSTRAINT [FK_Person_AspNetUsers] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers]([Id])
+	CONSTRAINT [FK_Person_AspNetUsers] FOREIGN KEY ([UserId]) REFERENCES [dbo].[AspNetUsers]([Id]),
+	CONSTRAINT [UK_Person_UserId] UNIQUE ([UserId])
 )

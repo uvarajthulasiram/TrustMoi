@@ -3,9 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrustMoi.Models;
 using TrustMoi.Services.Interfaces;
@@ -16,45 +14,18 @@ namespace TrustMoi.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private readonly IPersonService _personService;
-
-        public ManageController(IPersonService personService)
-        {
-            _personService = personService;
-        }
-
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IPersonService personService)
+        private readonly IUserService _userService;
+        
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            _personService = personService;
+            _userService = userService;
         }
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
+        public ApplicationSignInManager SignInManager { get; }
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+        public ApplicationUserManager UserManager { get; }
 
         //
         // GET: /Manage/Index
@@ -77,7 +48,7 @@ namespace TrustMoi.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                AdvisorPersonalDetails = _personService.GetPersonalDetailsByUserId(User.Identity.GetUserId())
+                AdvisorPersonalDetails = _userService.GetPersonalDetailsByUserId(User.Identity.GetUserId())
             };
             return View(model);
         }
@@ -327,17 +298,6 @@ namespace TrustMoi.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && _userManager != null)
-            {
-                _userManager.Dispose();
-                _userManager = null;
-            }
-
-            base.Dispose(disposing);
-        }
-
 #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -390,5 +350,22 @@ namespace TrustMoi.Controllers
         }
 
 #endregion
+
+        [HttpPost]
+        public ActionResult SavePersonalDetails(AdvisorPersonalDetailsVm model)
+        {
+            if (!ModelState.IsValid) return View("Index");
+
+            try
+            {
+                _userService.SavePersonalDetails(model, User.Identity.GetUserId());
+            }
+            catch (Exception exception)
+            {
+                // Log
+            }
+
+            return View("Index");
+        }
     }
 }

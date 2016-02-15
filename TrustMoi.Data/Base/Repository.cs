@@ -6,13 +6,13 @@ using System.Linq.Expressions;
 
 namespace TrustMoi.Data.Base
 {
-    public class Repository<TEntity> : IRepository<TEntity>
+    public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         private readonly IDbContext _dbContext;
         private readonly IDbSet<TEntity> _dbSet;
 
-        public Repository(IDbContext context)
+        protected Repository(IDbContext context)
         {
             _dbContext = context;
             _dbSet = _dbContext.Set<TEntity>();
@@ -102,22 +102,9 @@ namespace TrustMoi.Data.Base
             ((DbContext)_dbContext).Entry(entity).State = EntityState.Modified;
         }
 
-        public bool SaveChanges()
+        public int SaveChanges()
         {
-            var isAllGood = true;
-
-            try
-            {
-                _dbContext.SaveChanges();
-            }
-            catch (Exception exception)
-            {
-                // ToDo: Log error message
-
-                isAllGood = false;
-            }
-
-            return isAllGood;
+            return _dbContext.SaveChanges();
         }
 
         private static IQueryable<TEntity> PerformInclusions(IEnumerable<Expression<Func<TEntity, object>>> includeProperties, IQueryable<TEntity> query)

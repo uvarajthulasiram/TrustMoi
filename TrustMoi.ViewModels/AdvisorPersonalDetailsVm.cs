@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using TrustMoi.Common.Enums;
 
 namespace TrustMoi.ViewModels
 {

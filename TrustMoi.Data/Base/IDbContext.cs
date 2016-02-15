@@ -7,6 +7,5 @@ namespace TrustMoi.Data.Base
     {
         IDbSet<TEntity> Set<TEntity>() where TEntity : class;
         int SaveChanges();
-        Database Database { get; set; }
     }
 }

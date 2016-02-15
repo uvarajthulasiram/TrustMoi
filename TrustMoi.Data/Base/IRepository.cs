@@ -38,6 +38,6 @@ namespace TrustMoi.Data.Base
 
         void Modify(TEntity entity);
 
-        bool SaveChanges();
+        int SaveChanges();
     }
 }

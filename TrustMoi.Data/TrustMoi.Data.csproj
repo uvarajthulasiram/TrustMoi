@@ -70,8 +70,8 @@
       <DependentUpon>TrustMoi.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities.cs" />
-    <Compile Include="Interfaces\IPersonRepository.cs" />
-    <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>TrustMoi.tt</DependentUpon>
     </Compile>
