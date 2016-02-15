@@ -37,5 +37,7 @@ namespace TrustMoi.Data.Base
         void Remove(TEntity entity);
 
         void Modify(TEntity entity);
+
+        bool SaveChanges();
     }
 }

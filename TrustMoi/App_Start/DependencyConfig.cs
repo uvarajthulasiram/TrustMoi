@@ -20,7 +20,6 @@ namespace TrustMoi
             var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>().ToArray();
 
             builder.RegisterType<Entities>().As<IDbContext>().InstancePerRequest();
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest().PropertiesAutowired();
             
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
             builder.RegisterAssemblyTypes(typeof(IRepository<>).Assembly).AsClosedTypesOf(typeof(IRepository<>)).InstancePerRequest();

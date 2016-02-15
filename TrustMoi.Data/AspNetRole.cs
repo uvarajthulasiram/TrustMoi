@@ -12,22 +12,18 @@ namespace TrustMoi.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class aspnet_Paths
+    public partial class AspNetRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public aspnet_Paths()
+        public AspNetRole()
         {
-            this.aspnet_PersonalizationPerUser = new HashSet<aspnet_PersonalizationPerUser>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
-        public System.Guid ApplicationId { get; set; }
-        public System.Guid PathId { get; set; }
-        public string Path { get; set; }
-        public string LoweredPath { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual aspnet_Applications aspnet_Applications { get; set; }
-        public virtual aspnet_PersonalizationAllUsers aspnet_PersonalizationAllUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<aspnet_PersonalizationPerUser> aspnet_PersonalizationPerUser { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

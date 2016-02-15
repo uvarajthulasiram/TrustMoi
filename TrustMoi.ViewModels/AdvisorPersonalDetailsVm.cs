@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using TrustMoi.Common.Enums;
 
 namespace TrustMoi.ViewModels
@@ -12,7 +13,7 @@ namespace TrustMoi.ViewModels
         public string LastName { get; set; }
 
         [DisplayName(@"Date of Birth")]
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [DisplayName(@"Address Line 1")]
         public string AddressLine1 { get; set; }
@@ -20,7 +21,7 @@ namespace TrustMoi.ViewModels
         [DisplayName(@"Address Line 2")]
         public string AddressLine2 { get; set; }
 
-        public GenderEnum Gender { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
         public string City { get; set; }
         public string Phone { get; set; }

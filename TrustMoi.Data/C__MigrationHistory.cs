@@ -12,12 +12,11 @@ namespace TrustMoi.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class aspnet_PersonalizationAllUsers
+    public partial class C__MigrationHistory
     {
-        public System.Guid PathId { get; set; }
-        public byte[] PageSettings { get; set; }
-        public System.DateTime LastUpdatedDate { get; set; }
-    
-        public virtual aspnet_Paths aspnet_Paths { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustMoi", "TrustMoi\TrustMoi.csproj", "{81206792-E4E9-4E21-9A42-024CEAF567BF}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TrustMoi.Database", "TrustMoi.Database\TrustMoi.Database.sqlproj", "{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustMoi.Data", "TrustMoi.Data\TrustMoi.Data.csproj", "{96DBEF08-6685-4FDF-A1E7-C1E0D366A26C}"
 EndProject
@@ -14,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustMoi.Common", "TrustMoi.Common\TrustMoi.Common.csproj", "{53C0425A-0A02-4D40-B696-ADC376BBB06A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrustMoi.ViewModels", "TrustMoi.ViewModels\TrustMoi.ViewModels.csproj", "{2E457C9D-0518-4DE7-AB99-A22034966A5D}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TrustMoi.Database", "TrustMoi.Database\TrustMoi.Database.sqlproj", "{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,12 +25,6 @@ Global
 		{81206792-E4E9-4E21-9A42-024CEAF567BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81206792-E4E9-4E21-9A42-024CEAF567BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81206792-E4E9-4E21-9A42-024CEAF567BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F0BA77B-AEB9-445D-9DBB-60747F3B111C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{96DBEF08-6685-4FDF-A1E7-C1E0D366A26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96DBEF08-6685-4FDF-A1E7-C1E0D366A26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96DBEF08-6685-4FDF-A1E7-C1E0D366A26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,6 +41,12 @@ Global
 		{2E457C9D-0518-4DE7-AB99-A22034966A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E457C9D-0518-4DE7-AB99-A22034966A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E457C9D-0518-4DE7-AB99-A22034966A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ACCFF80-AB8C-45EC-A994-8A75E605EE7D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,15 +12,18 @@ namespace TrustMoi.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class aspnet_PersonalizationPerUser
+    public partial class Person
     {
-        public System.Guid Id { get; set; }
-        public Nullable<System.Guid> PathId { get; set; }
-        public Nullable<System.Guid> UserId { get; set; }
-        public byte[] PageSettings { get; set; }
-        public System.DateTime LastUpdatedDate { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
+        public string Gender { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string City { get; set; }
     
-        public virtual aspnet_Paths aspnet_Paths { get; set; }
-        public virtual aspnet_Users aspnet_Users { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

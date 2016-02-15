@@ -3,10 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrustMoi.Models;
+using TrustMoi.Services.Interfaces;
 using TrustMoi.ViewModels;
 
 namespace TrustMoi.Controllers
@@ -16,15 +18,18 @@ namespace TrustMoi.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IPersonService _personService;
 
-        public ManageController()
+        public ManageController(IPersonService personService)
         {
+            _personService = personService;
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IPersonService personService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _personService = personService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -72,7 +77,7 @@ namespace TrustMoi.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                AdvisorPersonalDetails = new AdvisorPersonalDetailsVm()
+                AdvisorPersonalDetails = _personService.GetPersonalDetailsByUserId(User.Identity.GetUserId())
             };
             return View(model);
         }

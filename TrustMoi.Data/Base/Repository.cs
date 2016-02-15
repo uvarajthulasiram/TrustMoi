@@ -102,6 +102,24 @@ namespace TrustMoi.Data.Base
             ((DbContext)_dbContext).Entry(entity).State = EntityState.Modified;
         }
 
+        public bool SaveChanges()
+        {
+            var isAllGood = true;
+
+            try
+            {
+                _dbContext.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                // ToDo: Log error message
+
+                isAllGood = false;
+            }
+
+            return isAllGood;
+        }
+
         private static IQueryable<TEntity> PerformInclusions(IEnumerable<Expression<Func<TEntity, object>>> includeProperties, IQueryable<TEntity> query)
         {
             return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));

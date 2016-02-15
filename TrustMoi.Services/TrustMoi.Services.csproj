@@ -42,13 +42,13 @@
   <ItemGroup>
     <Compile Include="Base\MapperBase.cs" />
     <Compile Include="Base\ServiceBase.cs" />
+    <Compile Include="Interfaces\IMapper.cs" />
+    <Compile Include="Interfaces\IPersonService.cs" />
+    <Compile Include="Mappers\PersonDetailMapper.cs" />
+    <Compile Include="Services\PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TrustMoi.Common\TrustMoi.Common.csproj">
       <Project>{53c0425a-0a02-4d40-b696-adc376bbb06a}</Project>
