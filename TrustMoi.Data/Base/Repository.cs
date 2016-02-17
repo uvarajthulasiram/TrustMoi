@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace TrustMoi.Data.Base
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity>
+    public class Repository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
         private readonly IDbContext _dbContext;

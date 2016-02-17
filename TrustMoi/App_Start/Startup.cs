@@ -54,15 +54,15 @@ namespace TrustMoi
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1541009316227936",
+               appSecret: "855bee8f6266cbb66cc41937683b4e3b");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1041601656182-2qaa0gjqu5m205f5uehaor8hif38qvje.apps.googleusercontent.com",
+                ClientSecret = "h1gggk3UJORm93urYii9c3f7"
+            });
         }
     }
 }

@@ -9,13 +9,13 @@
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUser" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.Person" Width="1.5" PointX="5.25" PointY="8" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="TrustMoi.DatabaseModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.Person" Width="1.5" PointX="5.25" PointY="7" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.FK_Person_AspNetUsers" />
-      </Diagram>
+        <AssociationConnector Association="TrustMoi.DatabaseModel.AspNetUserRoles" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

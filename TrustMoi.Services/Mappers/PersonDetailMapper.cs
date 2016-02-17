@@ -13,14 +13,14 @@ namespace TrustMoi.Services.Mappers
             var person = source.People.SingleOrDefault();
             var vm = new AdvisorPersonalDetailsVm
             {
+                FirstName = source.FirstName,
+                LastName = source.LastName,
                 Phone = source.PhoneNumber,
                 Email = source.Email
             };
 
             if (person == null) return vm;
 
-            vm.FirstName = person.FirstName;
-            vm.LastName = person.LastName;
             vm.Gender = person.Gender;
             vm.DateOfBirth = person.DateOfBirth;
             vm.AddressLine1 = person.AddressLine1;
