@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using TrustMoi.Models;
@@ -15,12 +16,14 @@ namespace TrustMoi.Controllers
     public class ManageController : Controller
     {
         private readonly IUserService _userService;
+        private readonly ILog _log;
         
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService, ILog log)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             _userService = userService;
+            _log = log;
         }
 
         public ApplicationSignInManager SignInManager { get; }
@@ -32,7 +35,8 @@ namespace TrustMoi.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.UpdatedProfile ? "Profile successfully updated."
+                : message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -50,7 +54,7 @@ namespace TrustMoi.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 AdvisorPersonalDetails = _userService.GetPersonalDetailsByUserId(User.Identity.GetUserId())
             };
-            return View(model);
+            return View("Index", model);
         }
 
         //
@@ -340,6 +344,7 @@ namespace TrustMoi.Controllers
 
         public enum ManageMessageId
         {
+            UpdatedProfile,
             AddPhoneSuccess,
             ChangePasswordSuccess,
             SetTwoFactorSuccess,
@@ -352,20 +357,22 @@ namespace TrustMoi.Controllers
 #endregion
 
         [HttpPost]
-        public ActionResult SavePersonalDetails(AdvisorPersonalDetailsVm model)
+        public Task<ActionResult> SavePersonalDetails(AdvisorPersonalDetailsVm model)
         {
-            if (!ModelState.IsValid) return View("Index");
+            if (!ModelState.IsValid) return Index(ManageMessageId.Error);
 
             try
             {
                 _userService.SavePersonalDetails(model, User.Identity.GetUserId());
+                _log.Info($"Successfully updated profile of user {User.Identity.Name}");
+
+                return Index(ManageMessageId.UpdatedProfile);
             }
             catch (Exception exception)
             {
-                // Log
+                _log.Error(exception.StackTrace);
+                return Index(ManageMessageId.Error);
             }
-
-            return View("Index");
         }
     }
 }

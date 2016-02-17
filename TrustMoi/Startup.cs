@@ -42,6 +42,8 @@ namespace TrustMoi
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
+            builder.RegisterModule(new LoggingModule());
+
             builder.RegisterControllers(assemblies);
 
             var container = builder.Build();
