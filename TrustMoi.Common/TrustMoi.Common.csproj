@@ -41,17 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\GenderEnum.cs" />
+    <Compile Include="Enums\QuestionCategory.cs" />
+    <Compile Include="Enums\QuestionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Messages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\FormatUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Messages.resx">

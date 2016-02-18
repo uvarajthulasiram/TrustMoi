@@ -1,64 +1,62 @@
-﻿@model TrustMoi.ViewModels.AdvisorPersonalDetailsVm
+﻿@using TrustMoi.Common.Enums
+@model TrustMoi.ViewModels.PersonDetailsVm
 
-@using (Html.BeginForm("SavePersonalDetails", "Manage", FormMethod.Post, new {id = "personalDetailsForm", @class = "form-horizontal", role = "form"}))
+@using (Html.BeginForm("SavePersonalDetails", "Manage", FormMethod.Post, new { id = "personalDetailsForm", @class = "form-horizontal", role = "form" }))
 {
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
                 <div class="container-fluid">
-                    <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.FirstName, new {@class = "col-md-4 control-label"})
+                    <div class="row spacer-md">
+                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.FirstName, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.LastName, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.LastName, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.DateOfBirth, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.DateOfBirth, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.DateOfBirth, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.DateOfBirth, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.Gender, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.Gender, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.RadioButtonFor(m => m.Gender, new {@class = "form-control"})
+                            @Html.RadioButtonFor(m => m.Gender, GenderEnum.Male.ToString(), new { id = GenderEnum.Male.ToString() })
+                            <label class="normalLabel" for="@GenderEnum.Male.ToString()">@GenderEnum.Male.ToString()</label>
+                            @Html.RadioButtonFor(m => m.Gender, GenderEnum.Female.ToString(), new { id = GenderEnum.Female.ToString() })
+                            <label class="normalLabel" for="@GenderEnum.Female.ToString()">@GenderEnum.Female.ToString()</label>
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.Email, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.AddressLine1, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.AddressLine1, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.AddressLine2, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.AddressLine1, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.AddressLine2, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.City, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.AddressLine2, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.City, new {@class = "col-md-4 control-label"})
+                        @Html.LabelFor(m => m.Phone, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.City, new {@class = "form-control"})
-                        </div>
-                    </div>
-                    <div class="row spacer-sm">
-                        @Html.LabelFor(m => m.Phone, new {@class = "col-md-4 control-label"})
-                        <div class="col-md-8">
-                            @Html.TextBoxFor(m => m.Phone, new {@class = "form-control"})
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="row spacer-sm">

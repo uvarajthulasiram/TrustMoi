@@ -40,7 +40,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="Personal">
-                    @Html.Partial("_PersonalDetails", Model.AdvisorPersonalDetails)
+                    @Html.Partial("_PersonalDetails", Model.PersonalDetails)
                 </div>
                 <div role="tabpanel" class="tab-pane" id="Interests">
                     Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
@@ -48,7 +48,9 @@
                 <div role="tabpanel" class="tab-pane" id="Budget">
                     Bootstrap's plugins don't fall back particularly gracefully when JavaScript is disabled. If you care about the user experience in this case, use to explain the situation (and how to re-enable JavaScript) to your users, and/or add your own custom fallbacks.
                 </div>
-                <div role="tabpanel" class="tab-pane" id="Risk">...</div>
+                <div role="tabpanel" class="tab-pane" id="Risk">
+                    @Html.Partial("_PesonRiskPolling", Model.PersonQuestionAnswers)
+                </div>
                 <div role="tabpanel" class="tab-pane" id="Message">...</div>
             </div>
         </div>

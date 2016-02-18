@@ -1,0 +1,29 @@
+﻿@model IEnumerable<TrustMoi.ViewModels.PersonQuestionAnswerVm>
+@using (Html.BeginForm())
+{
+    <div class="container-fluid">
+        @foreach (var vm in Model)
+        {
+            <div class="row spacer-md">
+                @Html.Label(vm.Question, new { @class = "col-md-12 control-label" })
+            </div>
+            <div class="row spacer-md">
+                <div class="col-md-12">
+                    <ul class="list-group">
+                        @foreach (var vmChild in vm.Answers)
+                        {
+                            <li class="list-group-item">
+                                @Html.RadioButton("Answer", vmChild) @vmChild
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+        <div class="row spacer-md">
+            <div class="col-md-12">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

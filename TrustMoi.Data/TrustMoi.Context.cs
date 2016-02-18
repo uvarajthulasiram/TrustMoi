@@ -29,7 +29,10 @@ namespace TrustMoi.Data
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<UserAnswer> UserAnswers { get; set; }
     }
 }

@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer.cs">
+      <DependentUpon>TrustMoi.tt</DependentUpon>
+    </Compile>
     <Compile Include="AspNetRole.cs">
       <DependentUpon>TrustMoi.tt</DependentUpon>
     </Compile>
@@ -72,7 +75,12 @@
     <Compile Include="Entities.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Interfaces\IPersonRepository.cs" />
+    <Compile Include="Question.cs">
+      <DependentUpon>TrustMoi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IQuestionRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>TrustMoi.tt</DependentUpon>
@@ -92,6 +100,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TrustMoi.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="UserAnswer.cs">
+      <DependentUpon>TrustMoi.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -70,6 +70,9 @@
     <Build Include="dbo\Tables\AspNetUserLogins.sql" />
     <Build Include="dbo\Tables\__MigrationHistory.sql" />
     <Build Include="dbo\Tables\Person.sql" />
+    <Build Include="dbo\Tables\Questions.sql" />
+    <Build Include="dbo\Tables\Answers.sql" />
+    <Build Include="dbo\Tables\UserAnswers.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TrustMoi.Database.publish.xml" />

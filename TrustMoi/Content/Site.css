@@ -30,3 +30,7 @@ textarea {
 .img-center {
     margin: 0 auto;
 }
+
+.normalLabel {
+    font-weight: normal !important;
+}

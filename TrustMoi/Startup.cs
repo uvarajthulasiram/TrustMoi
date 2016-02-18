@@ -11,6 +11,7 @@ using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using TrustMoi.Data;
 using TrustMoi.Data.Base;
+using TrustMoi.Extensions;
 using TrustMoi.Models;
 using TrustMoi.Services.Base;
 

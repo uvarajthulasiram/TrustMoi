@@ -9,11 +9,17 @@
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.625" />
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.Answer" Width="1.5" PointX="3" PointY="13.25" />
         <EntityTypeShape EntityType="TrustMoi.DatabaseModel.AspNetUser" Width="1.5" PointX="3" PointY="7" />
-        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.Person" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.Person" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.Question" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="TrustMoi.DatabaseModel.UserAnswer" Width="1.5" PointX="5.25" PointY="11.25" />
+        <AssociationConnector Association="TrustMoi.DatabaseModel.FK_Answers_Questions" />
+        <AssociationConnector Association="TrustMoi.DatabaseModel.FK_UserAnswers_Answers" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.FK_Person_AspNetUsers" />
+        <AssociationConnector Association="TrustMoi.DatabaseModel.FK_UserAnswers_AspNetUsers" />
         <AssociationConnector Association="TrustMoi.DatabaseModel.AspNetUserRoles" />
         </Diagram>
     </edmx:Diagrams>

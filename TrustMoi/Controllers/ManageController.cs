@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using TrustMoi.Common.Utilities;
+using TrustMoi.Extensions;
 using TrustMoi.Models;
 using TrustMoi.Services.Interfaces;
 using TrustMoi.ViewModels;
@@ -52,7 +54,8 @@ namespace TrustMoi.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                AdvisorPersonalDetails = _userService.GetPersonalDetailsByUserId(User.Identity.GetUserId())
+                PersonalDetails = _userService.GetPersonalDetailsByUserId(User.Identity.GetUserId()),
+                PersonQuestionAnswers = _userService.GetPersonQuestionAnswers()
             };
             return View("Index", model);
         }
@@ -357,7 +360,7 @@ namespace TrustMoi.Controllers
 #endregion
 
         [HttpPost]
-        public Task<ActionResult> SavePersonalDetails(AdvisorPersonalDetailsVm model)
+        public Task<ActionResult> SavePersonalDetails(PersonDetailsVm model)
         {
             if (!ModelState.IsValid) return Index(ManageMessageId.Error);
 
@@ -370,7 +373,7 @@ namespace TrustMoi.Controllers
             }
             catch (Exception exception)
             {
-                _log.Error(exception.StackTrace);
+                _log.Error(FormatUtility.GetExceptionMessage(exception));
                 return Index(ManageMessageId.Error);
             }
         }

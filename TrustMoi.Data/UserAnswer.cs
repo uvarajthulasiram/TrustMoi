@@ -12,15 +12,13 @@ namespace TrustMoi.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class UserAnswer
     {
+        public int Id { get; set; }
         public string UserId { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
-        public string Gender { get; set; }
-        public string AddressLine1 { get; set; }
-        public string AddressLine2 { get; set; }
-        public string City { get; set; }
+        public int AnswerId { get; set; }
     
+        public virtual Answer Answer { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }
