@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using TrustMoi.Services.Interfaces;
 using TrustMoi.ViewModels;
 
 namespace TrustMoi.Models

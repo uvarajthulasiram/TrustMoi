@@ -7,7 +7,6 @@ using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using TrustMoi.Common.Utilities;
-using TrustMoi.Extensions;
 using TrustMoi.Models;
 using TrustMoi.Services.Interfaces;
 using TrustMoi.ViewModels;

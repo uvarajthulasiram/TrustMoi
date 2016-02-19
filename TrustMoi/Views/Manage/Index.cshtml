@@ -56,3 +56,19 @@
         </div>
     </div>
 </div>
+
+
+@section scripts{
+    <script type="text/javascript">
+            console.log('in');
+            $(document).ready(function () {
+                    $('#btnSave').click(function (e) {
+                        console.log('in');
+                        e.preventDefault();
+
+                        bootbox.alert('I am in :)');
+                    });
+                }
+            );
+    </script>
+}
