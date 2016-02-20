@@ -3,12 +3,11 @@
 
 @using (Html.BeginForm("SavePersonalDetails", "Manage", FormMethod.Post, new { id = "personalDetailsForm", @class = "form-horizontal", role = "form" }))
 {
-
     <div class="container-fluid">
-        <div class="row">
+        <div class="row spacer-md">
             <div class="col-md-8">
                 <div class="container-fluid">
-                    <div class="row spacer-md">
+                    <div class="row">
                         @Html.LabelFor(m => m.FirstName, new { @class = "col-md-4 control-label" })
                         <div class="col-md-8">
                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
@@ -67,7 +66,18 @@
                 </div>
             </div>
             <div class="col-md-4">
-                Information
+                <div class="row spacer-md">
+                    <div class="col-md-12">
+                        Information
+                    </div>
+                </div>
+                <div class="row spacer-md">
+                    <div class="col-md-12">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/WEDIj9JBTC8" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

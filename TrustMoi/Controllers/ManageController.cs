@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -375,6 +376,11 @@ namespace TrustMoi.Controllers
                 _log.Error(FormatUtility.GetExceptionMessage(exception));
                 return Index(ManageMessageId.Error);
             }
+        }
+
+        public ActionResult Users()
+        {
+            return View();
         }
     }
 }

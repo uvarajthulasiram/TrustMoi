@@ -8,21 +8,33 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
-<hr/>
+<hr />
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4 text-center">
-            <img class="img-responsive img-rounded img-center" alt="" src="~/Images/NoImage.gif"/>
+            <img class="img-responsive img-rounded img-center" alt="" src="~/Images/NoImage.gif" />
         </div>
         <div class="col-md-8">
             <p>
-                <h3>Name</h3>
+                <h3>@Model.PersonalDetails.FullName</h3>
             </p>
             <p>
-                <h4>Email</h4>
+                <h4>
+                    @if (!string.IsNullOrWhiteSpace(Model.PersonalDetails.Email))
+                    {
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        <a href="mailto:@Model.PersonalDetails.Email">@Model.PersonalDetails.Email</a>
+                    }
+                </h4>
             </p>
             <p>
-                <h4>Phone</h4>
+                <h4>
+                    @if (!string.IsNullOrWhiteSpace(Model.PersonalDetails.Phone))
+                    {
+                        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                        @Model.PersonalDetails.Phone
+                    }
+                </h4>
             </p>
         </div>
     </div>
@@ -60,15 +72,13 @@
 
 @section scripts{
     <script type="text/javascript">
-            console.log('in');
-            $(document).ready(function () {
-                    $('#btnSave').click(function (e) {
-                        console.log('in');
-                        e.preventDefault();
+        $(document).ready(function() {
+                $('#btnSave').click(function(e) {
+                    e.preventDefault();
 
-                        bootbox.alert('I am in :)');
-                    });
-                }
-            );
+                    bootbox.alert('I am in :)');
+                });
+            }
+        );
     </script>
 }

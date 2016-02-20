@@ -14,7 +14,8 @@ namespace TrustMoi.Services.Mappers
             {
                 FirstName = source.FirstName,
                 LastName = source.LastName,
-                Phone = source.PhoneNumber
+                Phone = source.PhoneNumber,
+                Email = source.Email
             };
 
             if (person == null) return vm;

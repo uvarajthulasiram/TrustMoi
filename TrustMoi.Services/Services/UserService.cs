@@ -6,7 +6,6 @@ using TrustMoi.Services.Base;
 using TrustMoi.Services.Interfaces;
 using TrustMoi.Services.Mappers;
 using TrustMoi.ViewModels;
-using PersonQuestionAnswerVm = TrustMoi.ViewModels.PersonQuestionAnswerVm;
 
 namespace TrustMoi.Services.Services
 {

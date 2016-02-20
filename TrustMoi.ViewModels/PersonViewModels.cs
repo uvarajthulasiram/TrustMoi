@@ -35,6 +35,9 @@ namespace TrustMoi.ViewModels
         [Required]
         [Display(Name = @"City")]
         public string City { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
+        public string Email { get; set; }
     }
 
     public class PersonQuestionAnswerVm
