@@ -15,15 +15,18 @@ namespace TrustMoi.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager { get; }
 
         public ApplicationUserManager UserManager { get; }
+
+        public ApplicationRoleManager RoleManager { get; }
 
         //
         // GET: /Account/Login

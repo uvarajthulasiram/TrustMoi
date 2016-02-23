@@ -20,10 +20,11 @@ namespace TrustMoi.Controllers
         private readonly IUserService _userService;
         private readonly ILog _log;
         
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService, ILog log)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager, IUserService userService, ILog log)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
             _userService = userService;
             _log = log;
         }
@@ -31,6 +32,8 @@ namespace TrustMoi.Controllers
         public ApplicationSignInManager SignInManager { get; }
 
         public ApplicationUserManager UserManager { get; }
+
+        public ApplicationRoleManager RoleManager { get; set; }
 
         //
         // GET: /Manage/Index
