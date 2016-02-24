@@ -18,7 +18,8 @@ namespace TrustMoi.ViewModels
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = @"Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? DateOfBirth { get; set; }
 
         [Required]
         [Display(Name = @"Address Line 1")]

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TrustMoi.Common.Utilities;
 using TrustMoi.Data;
 using TrustMoi.Data.Interfaces;
 using TrustMoi.Services.Base;
@@ -65,7 +66,7 @@ namespace TrustMoi.Services.Services
 
         private static void SetPersonProperties(PersonDetailsVm model, UserPerson person)
         {
-            person.DateOfBirth = model.DateOfBirth;
+            person.DateOfBirth = model.DateOfBirth.GetValueOrDefault();
             person.AddressLine1 = model.AddressLine1;
             person.AddressLine2 = model.AddressLine2;
             person.Gender = model.Gender;

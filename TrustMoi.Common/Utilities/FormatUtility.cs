@@ -22,5 +22,9 @@ namespace TrustMoi.Common.Utilities
 
             return stringBuilder.ToString();
         }
+
+        private const string DateFormat = @"MMMM dd, yyyy";
+
+        public static string GetFormattedDate(DateTime? date) => date?.ToString(format: DateFormat) ?? string.Empty;
     }
 }
