@@ -12,7 +12,7 @@ namespace TrustMoi.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class UserPerson
     {
         public string UserId { get; set; }
         public System.DateTime DateOfBirth { get; set; }
@@ -20,6 +20,7 @@ namespace TrustMoi.Data
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
         public string City { get; set; }
+        public bool IsBlocked { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

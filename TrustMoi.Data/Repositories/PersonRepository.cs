@@ -3,7 +3,7 @@ using TrustMoi.Data.Interfaces;
 
 namespace TrustMoi.Data.Repositories
 {
-    public class PersonRepository : Repository<Person>, IPersonRepository
+    public class PersonRepository : Repository<UserPerson>, IPersonRepository
     {
         public PersonRepository(IDbContext context) : base(context)
         {

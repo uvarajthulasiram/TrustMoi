@@ -13,17 +13,15 @@ namespace TrustMoi.Services.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IPersonRepository _personRepository;
-        private readonly IQuestionRepository _questionRepository;
-        private readonly IQuestionAnswerMapper _questionAnswerMapper;
         private readonly IPersonDetailMapper _personDetailMapper;
+        private readonly IManageUserMapper _manageUserMapper;
 
-        public UserService(IUserRepository userRepository, IPersonRepository personRepository, IPersonDetailMapper personDetailMapper, IQuestionRepository questionRepository, IQuestionAnswerMapper questionAnswerMapper)
+        public UserService(IUserRepository userRepository, IPersonRepository personRepository, IPersonDetailMapper personDetailMapper, IManageUserMapper manageUserMapper)
         {
             _userRepository = userRepository;
             _personRepository = personRepository;
             _personDetailMapper = personDetailMapper;
-            _questionRepository = questionRepository;
-            _questionAnswerMapper = questionAnswerMapper;
+            _manageUserMapper = manageUserMapper;
         }
 
         public PersonDetailsVm GetPersonalDetailsByUserId(string userId)
@@ -31,16 +29,16 @@ namespace TrustMoi.Services.Services
             return _personDetailMapper.Map(_userRepository.Single(p => p.Id == userId));
         }
 
-        public IEnumerable<PersonQuestionAnswerVm> GetPersonQuestionAnswers()
+        public IEnumerable<ManagePersonVm> GetAllUsers()
         {
-            return _questionRepository.GetAll().Select(p => _questionAnswerMapper.Map(p));
+            return _userRepository.GetAll().Select(p => _manageUserMapper.Map(p));
         }
 
         public void SavePersonalDetails(PersonDetailsVm model, string userId)
         {
             var user = _userRepository.Single(p => p.Id == userId);
 
-            if (user.Person != null) GetUpdatedPersonFromVm(model, user);
+            if (user.UserPerson != null) GetUpdatedPersonFromVm(model, user);
             else CreateNewPersonFromVm(model, user);
 
             _userRepository.Modify(user);
@@ -54,18 +52,18 @@ namespace TrustMoi.Services.Services
             SetUserProperties(model, user);
             SetPersonProperties(model, person);
 
-            user.Person = person;
+            user.UserPerson = person;
         }
 
         private static void GetUpdatedPersonFromVm(PersonDetailsVm model, AspNetUser user)
         {
-            var person = user.Person;
+            var person = user.UserPerson;
 
             SetUserProperties(model, user);
             SetPersonProperties(model, person);
         }
 
-        private static void SetPersonProperties(PersonDetailsVm model, Person person)
+        private static void SetPersonProperties(PersonDetailsVm model, UserPerson person)
         {
             person.DateOfBirth = model.DateOfBirth;
             person.AddressLine1 = model.AddressLine1;

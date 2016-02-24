@@ -44,8 +44,10 @@
     <Compile Include="Base\ServiceBase.cs" />
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Mappers\ManageUserMapper.cs" />
     <Compile Include="Mappers\PersonDetailMapper.cs" />
     <Compile Include="Mappers\QuestionAnswerMapper.cs" />
+    <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

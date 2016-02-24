@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Manage Users";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="well">
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name"
+                   data-mvcgrid-type="filter" data-mvcgrid-option="FullName" />
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email"
+                   data-mvcgrid-type="filter" data-mvcgrid-option="Email" />
+        </div>
+        <div class="form-group">
+            <select class="form-control" data-mvcgrid-type="filter" data-mvcgrid-option="EmailConfirmed">
+                <option value=""></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-default" data-mvcgrid-apply-filter="click">Apply Filter</button>
+    </div>
+</div>
+
+@Html.MVCGrid("ManageUsersGrid")

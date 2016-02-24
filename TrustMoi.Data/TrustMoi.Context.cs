@@ -31,8 +31,8 @@ namespace TrustMoi.Data
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
-        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<UserAnswer> UserAnswers { get; set; }
+        public virtual DbSet<UserPerson> UserPersons { get; set; }
     }
 }

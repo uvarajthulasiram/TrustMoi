@@ -5,17 +5,19 @@ using TrustMoi.ViewModels;
 
 namespace TrustMoi.Services.Mappers
 {
-    public class PersonDetailMapper : MapperBase, IPersonDetailMapper
+    public class ManageUserMapper : MapperBase, IManageUserMapper
     {
-        public PersonDetailsVm Map(AspNetUser source)
+        public ManagePersonVm Map(AspNetUser source)
         {
             var person = source.UserPerson;
-            var vm = new PersonDetailsVm
+            var vm = new ManagePersonVm
             {
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 Phone = source.PhoneNumber,
-                Email = source.Email
+                Email = source.Email,
+                EmailConfirmed = source.EmailConfirmed,
+                PhoneConfirmed = source.PhoneNumberConfirmed
             };
 
             if (person == null) return vm;
@@ -25,12 +27,14 @@ namespace TrustMoi.Services.Mappers
             vm.AddressLine1 = person.AddressLine1;
             vm.AddressLine2 = person.AddressLine2;
             vm.City = person.City;
+            vm.Blocked = person.IsBlocked;
+            vm.ReportedAbuse = false; //ToDo: If user post abusive content reported by other users, then mark the user as abusive user.
 
             return vm;
         }
     }
 
-    public interface IPersonDetailMapper : IMapper<AspNetUser, PersonDetailsVm>
+    public interface IManageUserMapper : IMapper<AspNetUser, ManagePersonVm>
     {
     }
 }

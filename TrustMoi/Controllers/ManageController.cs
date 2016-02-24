@@ -7,9 +7,12 @@ using System.Web.Mvc;
 using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using MVCGrid.Models;
+using MVCGrid.Web;
 using TrustMoi.Common.Utilities;
 using TrustMoi.Models;
 using TrustMoi.Services.Interfaces;
+using TrustMoi.Services.Services;
 using TrustMoi.ViewModels;
 
 namespace TrustMoi.Controllers
@@ -18,15 +21,18 @@ namespace TrustMoi.Controllers
     public class ManageController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IQuestionService _questionService;
+
         private readonly ILog _log;
         
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager, IUserService userService, ILog log)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager, IUserService userService, ILog log, IQuestionService questionService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             RoleManager = roleManager;
             _userService = userService;
             _log = log;
+            _questionService = questionService;
         }
 
         public ApplicationSignInManager SignInManager { get; }
@@ -58,7 +64,7 @@ namespace TrustMoi.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
                 PersonalDetails = _userService.GetPersonalDetailsByUserId(User.Identity.GetUserId()),
-                PersonQuestionAnswers = _userService.GetPersonQuestionAnswers()
+                PersonQuestionAnswers = _questionService.GetPersonQuestionAnswers()
             };
             return View("Index", model);
         }
@@ -381,7 +387,7 @@ namespace TrustMoi.Controllers
             }
         }
 
-        public ActionResult Users()
+        public ActionResult ManageUsers()
         {
             return View();
         }

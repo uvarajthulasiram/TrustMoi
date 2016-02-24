@@ -77,17 +77,6 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
-          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="AddressLine1" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="AddressLine2" Type="varchar" MaxLength="250" />
-          <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="Questions">
           <Key>
             <PropertyRef Name="Id" />
@@ -104,6 +93,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="AnswerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPerson">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="AddressLine1" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="AddressLine2" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsBlocked" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Answers_Questions">
           <End Role="Questions" Type="Self.Questions" Multiplicity="1" />
@@ -173,18 +174,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Person_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserAnswers_Answers">
           <End Role="Answers" Type="Self.Answers" Multiplicity="1" />
           <End Role="UserAnswers" Type="Self.UserAnswers" Multiplicity="*" />
@@ -209,6 +198,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserPerson_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserPerson" Type="Self.UserPerson" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPerson">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TrustMoiDatabaseModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
@@ -217,9 +218,9 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAnswers" EntityType="Self.UserAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPerson" EntityType="Self.UserPerson" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Answers_Questions" Association="Self.FK_Answers_Questions">
             <End Role="Questions" EntitySet="Questions" />
             <End Role="Answers" EntitySet="Answers" />
@@ -240,10 +241,6 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Person_AspNetUsers" Association="Self.FK_Person_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Person" EntitySet="Person" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserAnswers_Answers" Association="Self.FK_UserAnswers_Answers">
             <End Role="Answers" EntitySet="Answers" />
             <End Role="UserAnswers" EntitySet="UserAnswers" />
@@ -251,6 +248,10 @@
           <AssociationSet Name="FK_UserAnswers_AspNetUsers" Association="Self.FK_UserAnswers_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserAnswers" EntitySet="UserAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPerson_AspNetUsers" Association="Self.FK_UserPerson_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserPerson" EntitySet="UserPerson" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -264,7 +265,6 @@
           <EntitySet Name="AspNetUserLogins" EntityType="TrustMoi.DatabaseModel.AspNetUserLogin" />
           <EntitySet Name="Answers" EntityType="TrustMoi.DatabaseModel.Answer" />
           <EntitySet Name="AspNetUsers" EntityType="TrustMoi.DatabaseModel.AspNetUser" />
-          <EntitySet Name="People" EntityType="TrustMoi.DatabaseModel.Person" />
           <EntitySet Name="Questions" EntityType="TrustMoi.DatabaseModel.Question" />
           <EntitySet Name="UserAnswers" EntityType="TrustMoi.DatabaseModel.UserAnswer" />
           <AssociationSet Name="FK_Answers_Questions" Association="TrustMoi.DatabaseModel.FK_Answers_Questions">
@@ -283,10 +283,6 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_Person_AspNetUsers" Association="TrustMoi.DatabaseModel.FK_Person_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="Person" EntitySet="People" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserAnswers_AspNetUsers" Association="TrustMoi.DatabaseModel.FK_UserAnswers_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="UserAnswer" EntitySet="UserAnswers" />
@@ -294,6 +290,11 @@
           <AssociationSet Name="AspNetUserRoles" Association="TrustMoi.DatabaseModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="UserPersons" EntityType="TrustMoi.DatabaseModel.UserPerson" />
+          <AssociationSet Name="FK_UserPerson_AspNetUsers" Association="TrustMoi.DatabaseModel.FK_UserPerson_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserPerson" EntitySet="UserPersons" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -366,21 +367,9 @@
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="TrustMoi.DatabaseModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="TrustMoi.DatabaseModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="Person" Relationship="TrustMoi.DatabaseModel.FK_Person_AspNetUsers" FromRole="AspNetUser" ToRole="Person" />
           <NavigationProperty Name="UserAnswers" Relationship="TrustMoi.DatabaseModel.FK_UserAnswers_AspNetUsers" FromRole="AspNetUser" ToRole="UserAnswer" />
           <NavigationProperty Name="AspNetRoles" Relationship="TrustMoi.DatabaseModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="AddressLine2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="TrustMoi.DatabaseModel.FK_Person_AspNetUsers" FromRole="Person" ToRole="AspNetUser" />
+          <NavigationProperty Name="UserPerson" Relationship="TrustMoi.DatabaseModel.FK_UserPerson_AspNetUsers" FromRole="AspNetUser" ToRole="UserPerson" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -454,18 +443,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Person_AspNetUsers">
-          <End Type="TrustMoi.DatabaseModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
-          <End Type="TrustMoi.DatabaseModel.Person" Role="Person" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserAnswers_AspNetUsers">
           <End Type="TrustMoi.DatabaseModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <End Type="TrustMoi.DatabaseModel.UserAnswer" Role="UserAnswer" Multiplicity="*" />
@@ -481,6 +458,31 @@
         <Association Name="AspNetUserRoles">
           <End Type="TrustMoi.DatabaseModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="TrustMoi.DatabaseModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="UserPerson">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine1" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="TrustMoi.DatabaseModel.FK_UserPerson_AspNetUsers" FromRole="UserPerson" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_UserPerson_AspNetUsers">
+          <End Type="TrustMoi.DatabaseModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="TrustMoi.DatabaseModel.UserPerson" Role="UserPerson" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPerson">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -555,18 +557,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="TrustMoi.DatabaseModel.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="TrustMoi.DatabaseModel.Question">
               <MappingFragment StoreEntitySet="Questions">
@@ -594,6 +584,19 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="UserPersons">
+            <EntityTypeMapping TypeName="TrustMoi.DatabaseModel.UserPerson">
+              <MappingFragment StoreEntitySet="UserPerson">
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
