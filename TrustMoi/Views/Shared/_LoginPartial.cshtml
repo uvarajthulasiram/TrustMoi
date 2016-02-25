@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using TrustMoi.Extensions
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,16 +6,33 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Administration<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Membership</li>
+                        <li>@Html.ActionLink("Manage Users", "ManageUsers", "Manage")</li>
+                        <li>@Html.ActionLink("Manage Roles", "ManageUsers", "Manage")</li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Others</li>
+                        <li>@Html.ActionLink("Manage Question / Answers", "ManageUsers", "Manage")</li>
+                    </ul>
+                </li>
+
+            }
             <li>
-                @if (User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink("Manage Users", "ManageUsers", "Manage")
-                }
+                <a href="@Url.Action("Index", "Manage")" id="loginLink">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;@User.Identity.GetUserFullName()
+                </a>
             </li>
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                <a href="javascript:document.getElementById('logoutForm').submit()">
+                    Log off&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                </a>
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         </ul>
     }
 }
@@ -23,6 +40,10 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            <a href="@Url.Action("Login", "Account")" id="loginLink">
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Log in
+            </a>
+        </li>
     </ul>
 }

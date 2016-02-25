@@ -1,23 +1,15 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Security.Principal;
 
 namespace TrustMoi.Extensions
 {
     public static class GenericPrincipalExtensions
     {
-        public static string FullName(this IPrincipal user)
+        public static string GetUserFullName(this IIdentity identity)
         {
-            if (!user.Identity.IsAuthenticated) return string.Empty;
+            var claim = ((ClaimsIdentity)identity).FindFirst("FullName");
 
-            var claimsIdentity = user.Identity as ClaimsIdentity;
-
-            if (claimsIdentity == null) return string.Empty;
-
-            foreach (var claim in claimsIdentity.Claims.Where(claim => claim.Type == "FullName"))
-                return claim.Value;
-
-            return string.Empty;
+            return (claim != null) ? claim.Value : string.Empty;
         }
     }
 
