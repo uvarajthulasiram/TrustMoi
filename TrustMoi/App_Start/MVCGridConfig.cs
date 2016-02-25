@@ -14,9 +14,9 @@ namespace TrustMoi
         public static void RegisterGrids()
         {
             MVCGridDefinitionTable.Add("ManageUsersGrid", new MVCGridBuilder<ManagePersonVm>()
-                .WithAuthorizationType(AuthorizationType.AllowAnonymous)
+                .WithAuthorizationType(AuthorizationType.Authorized)
                 .WithSorting(true, "FullName")
-                .WithPaging(paging: true, itemsPerPage: 15, allowChangePageSize: true, maxItemsPerPage: 50)
+                .WithPaging(paging: true, itemsPerPage: 2, allowChangePageSize: true, maxItemsPerPage: 50)
                 .AddColumns(cols =>
                 {
                     cols.Add("FullName").WithHeaderText("Name").WithValueExpression(p => p.FullName).WithFiltering(true);
@@ -30,19 +30,19 @@ namespace TrustMoi
                 {
                     var service = DependencyResolver.Current.GetService<IUserService>();
                     var options = context.QueryOptions;
-                    var result = new QueryResult<ManagePersonVm>(); // {Items = DependencyResolver.Current.GetService<IUserService>().GetAllUsers()};
+                    var result = new QueryResult<ManagePersonVm>();
+
+                    if (!options.GetLimitOffset().HasValue) return result;
+
                     var query = service.GetAllUsers().AsQueryable();
+                    var limitOffset = options.GetLimitOffset();
+                    var limitRowcount = options.GetLimitRowcount();
 
                     result.TotalRecords = query.Count();
 
-                    if (options.GetLimitOffset().HasValue)
-                    {
-                        var limitOffset = options.GetLimitOffset();
-                        var limitRowcount = options.GetLimitRowcount();
-
-                        if (limitOffset != null && limitRowcount != null)
-                            query = query.Skip(limitOffset.Value).Take(limitRowcount.Value);
-                    }
+                    if (limitOffset != null && limitRowcount != null)
+                        query = query.Skip(limitOffset.Value).Take(limitRowcount.Value);
+                        
                     result.Items = query.ToList();
 
                     return result;

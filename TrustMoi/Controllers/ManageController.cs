@@ -316,7 +316,6 @@ namespace TrustMoi.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -368,8 +367,6 @@ namespace TrustMoi.Controllers
             Error
         }
 
-#endregion
-
         [HttpPost]
         public Task<ActionResult> SavePersonalDetails(PersonDetailsVm model)
         {
@@ -387,11 +384,6 @@ namespace TrustMoi.Controllers
                 _log.Error(FormatUtility.GetExceptionMessage(exception));
                 return Index(ManageMessageId.Error);
             }
-        }
-
-        public ActionResult ManageUsers()
-        {
-            return View();
         }
     }
 }
